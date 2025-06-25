@@ -10,6 +10,17 @@ A mini AI-driven learning platform that allows users to select topics, send prom
 - **ORM:** Mongoose
 - **AI Integration:** OpenAI API
 
+## Features
+
+- User registration and login
+- Category and sub-category selection
+- Sending prompts to AI and receiving lesson-like responses
+- Viewing personal learning history
+- Admin dashboard: view all users and their prompt history
+- Full CRUD API with validation and error handling
+- Cascade delete for related entities (e.g., deleting a user deletes their prompts)
+- Modular and scalable code structure
+
 ## Installation & Usage
 
 1. **Clone the repository:**
@@ -31,12 +42,14 @@ A mini AI-driven learning platform that allows users to select topics, send prom
      ```
 
 3. **Configure environment variables:**
-   - In the `server` folder, create a `.env` file with:
+   - In the server folder, create a `.env` file with:
      ```
-     MONGO_URI=your-mongodb-uri
+     MONGO_URI=mongodb+srv://r0548535482:r215161167@cluster0.5tgoceo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+     
      OPENAI_API_KEY=your-openai-key
      PORT=5000
      ```
+   - Example `.env` file is provided as `.env.example`.
 
 4. **Run the server:**
    ```bash
@@ -50,11 +63,22 @@ A mini AI-driven learning platform that allows users to select topics, send prom
    npm run dev
    ```
 
----
+## Project Structure
 
-## הערות (עברית)
-
-- ודאו שקובץ `.env` לא נמצא ב-GitHub (הוסיפו אותו ל-`.gitignore`).
-- יש להגדיר את ה-MONGO_URI לכתובת של MongoDB Atlas שלכם.
-- יש להכניס את מפתח ה-API של OpenAI (או להשתמש ב-mock בשלב הפיתוח).
-- ניתן להרחיב את ההוראות בהתאם לצורך.
+```
+ai-learning-platform/
+│
+├── server/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   └── app.ts
+│   └── package.json
+│
+├── client/
+│   └── (React app files)
+│
+└── README.md
+```
