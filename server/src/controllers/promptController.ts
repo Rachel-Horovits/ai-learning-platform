@@ -68,10 +68,16 @@ export const createPrompt = async (req: Request, res: Response) => {
 };
 
 export const getPrompts = async (req: Request, res: Response) => {
-  const { userId } = req.query;
-  const prompts = await Prompt.find(userId ? { user: userId } : {})
-    .populate('user category subCategory');
-  res.json(prompts);
+  try {
+    const { userId } = req.query;
+    const prompts = await Prompt.find(userId ? { user: userId } : {})
+      .populate('user', 'name phone')
+      .populate('category', 'name')
+      .populate('subCategory', 'name');
+    res.json(prompts);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch prompts', details: err });
+  }
 };
 
 export const deletePrompt = async (req: Request, res: Response) => {
