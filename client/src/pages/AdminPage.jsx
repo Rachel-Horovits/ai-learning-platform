@@ -44,6 +44,8 @@ export default function AdminPage() {
           <ul>
             {history.map((item) => (
               <li key={item._id}>
+                <b>נושא:</b> {item.category?.name}<br />
+                <b>תת-נושא:</b> {item.subCategory?.name}<br />
                 <b>שאלה:</b> {item.prompt} <br />
                 <b>תשובה:</b> {item.response}
               </li>
