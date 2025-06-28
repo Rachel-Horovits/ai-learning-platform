@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { sendPrompt } from "../services/api";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../store/UserContext";
@@ -12,6 +12,14 @@ export default function PromptPage() {
   const { user } = useUser();
 
   const { category, subCategory } = location.state || {};
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    } else if (!category || !subCategory) {
+      navigate("/categories");
+    }
+  }, [user, category, subCategory, navigate]);
 
   const handleSend = async () => {
     setLoading(true);
@@ -30,14 +38,6 @@ export default function PromptPage() {
     setLoading(false);
   };
 
-  if (!user) {
-    navigate("/");
-    return null;
-  }
-  if (!category || !subCategory) {
-    navigate("/categories");
-    return null;
-  }
 
   return (
     <div>

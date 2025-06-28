@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useUser } from "../store/UserContext";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 
 export default function LoginPage() {
   const [name, setName] = useState("");
@@ -8,16 +10,16 @@ export default function LoginPage() {
   const { login, user } = useUser();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (user) {
+      navigate("/categories");
+    }
+  }, [user, navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(name, phone);
-    navigate("/categories");
   };
-
-  if (user) {
-    navigate("/categories");
-    return null;
-  }
 
   return (
     <form onSubmit={handleSubmit}>

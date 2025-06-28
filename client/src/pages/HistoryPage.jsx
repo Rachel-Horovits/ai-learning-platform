@@ -9,15 +9,12 @@ export default function HistoryPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
+    if (!user) {
+      navigate("/");
+    } else {
       getHistory(user._id).then(res => setHistory(res.data));
     }
-  }, [user]);
-
-  if (!user) {
-    navigate("/");
-    return null;
-  }
+  }, [user, navigate]);
 
   return (
     <div>

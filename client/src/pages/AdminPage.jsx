@@ -14,16 +14,17 @@ export default function AdminPage() {
     getUsers().then(res => setUsers(res.data));
   }, []);
 
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
   const handleSelectUser = async (userId) => {
     setSelectedUser(userId);
     const res = await getHistory(userId);
     setHistory(res.data);
   };
-
-  if (!user) {
-    navigate("/");
-    return null;
-  }
 
   return (
     <div>

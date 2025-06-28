@@ -7,6 +7,7 @@ import userRoutes from './routes/userRoutes';
 import categoryRoutes from './routes/categoryRoutes';
 import subCategoryRoutes from './routes/subCategoryRoutes';
 import promptRoutes from './routes/promptRoutes';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -15,7 +16,8 @@ const port = process.env.PORT || 5000;
 const mongoUri = process.env.MONGO_URI!;
 
 app.use(express.json());
-
+app.use(cors());
+// Enable CORS for all routes
 mongoose.connect(mongoUri)
   .then(() => console.log('MongoDB connected!'))
   .catch(err => console.error('MongoDB connection error:', err));
