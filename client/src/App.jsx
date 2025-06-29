@@ -15,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/categories" element={<CategoryPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/prompt" element={<PromptPage />} />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/admin" element={<AdminPage />} />

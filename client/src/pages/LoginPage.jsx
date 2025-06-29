@@ -34,12 +34,25 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    if (!name || !phone) {
+      setError("All fields are required.");
+      return;
+    }
     try {
       await login(name, phone);
     } catch (err) {
       setError(err.response?.data?.error || "Login failed");
     }
   };
+
+  // Prevent scrolling on login page
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
 
   return (
     <Box
@@ -104,6 +117,7 @@ export default function LoginPage() {
               margin="normal"
               value={name}
               onChange={e => setName(e.target.value)}
+              required
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -119,6 +133,7 @@ export default function LoginPage() {
               margin="normal"
               value={phone}
               onChange={e => setPhone(e.target.value)}
+              required
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
