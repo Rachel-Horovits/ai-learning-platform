@@ -6,14 +6,15 @@ export const UserContext = createContext(null);
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  // התחברות/הרשמה
   const login = async (name, phone) => {
     const res = await loginUser(name, phone);
-    setUser(res.data);
+    setUser(res.data.user);
+    localStorage.setItem("token", res.data.accessToken);
   };
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem("token");
   };
 
   return (

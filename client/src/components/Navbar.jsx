@@ -11,6 +11,11 @@ export default function Navbar() {
         <>
           <Link to="/categories">פלטפורמת למידה</Link>{" | "}
           <Link to="/history">היסטוריה</Link>{" | "}
+          {user.role === "admin" && (
+            <>
+              <Link to="/admin">ניהול</Link>{" | "}
+            </>
+          )}
           <button onClick={logout}>התנתק</button>
         </>
       )}

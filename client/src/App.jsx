@@ -4,7 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import CategoryPage from "./pages/CategoryPage";
 import PromptPage from "./pages/PromptPage";
 import HistoryPage from "./pages/HistoryPage";
-import AdminPage from "./pages/AdminPage";
+import AdminPage from "./pages/AdminDashboardPage";
 import Navbar from "./components/Navbar";
 
 function App() {
