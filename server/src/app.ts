@@ -18,12 +18,10 @@ const mongoUri = process.env.MONGO_URI!;
 
 app.use(express.json());
 app.use(cors());
-// Enable CORS for all routes
+
 mongoose.connect(mongoUri)
   .then(() => console.log('MongoDB connected!'))
   .catch(err => console.error('MongoDB connection error:', err));
-
-app.get('/test', (req, res) => { res.send('test ok') });
 
 console.log('Registering user routes...');
 app.use('/api/users', userRoutes);
