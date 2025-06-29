@@ -57,7 +57,7 @@ export const createPrompt = async (req: Request, res: Response) => {
       category,
       subCategory,
       prompt,
-     // response: aiResponse,
+      // response: aiResponse,
     });
 
     await newPrompt.save();
@@ -73,7 +73,9 @@ export const getPrompts = async (req: Request, res: Response) => {
     const prompts = await Prompt.find(userId ? { user: userId } : {})
       .populate('user', 'name phone')
       .populate('category', 'name')
-      .populate('subCategory', 'name');
+      .populate('subCategory', 'name')
+      .sort({ createdAt: -1 }); // ממיין מהחדש לישן
+
     res.json(prompts);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch prompts', details: err });

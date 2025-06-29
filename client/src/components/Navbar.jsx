@@ -6,11 +6,10 @@ export default function Navbar() {
 
   return (
     <nav style={{ padding: "10px", borderBottom: "1px solid #ccc" }}>
-      <Link to="/">בית</Link>{" | "}
+      {/* להוסיף דף אודות<Link to="/">בית</Link>{" | "} */}
       {user && (
         <>
-          <Link to="/categories">קטגוריות</Link>{" | "}
-          <Link to="/prompt">שלח שאלה</Link>{" | "}
+          <Link to="/categories">פלטפורמת למידה</Link>{" | "}
           <Link to="/history">היסטוריה</Link>{" | "}
           <button onClick={logout}>התנתק</button>
         </>

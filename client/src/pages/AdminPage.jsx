@@ -48,7 +48,9 @@ export default function AdminPage() {
                 <b>נושא:</b> {item.category?.name}<br />
                 <b>תת-נושא:</b> {item.subCategory?.name}<br />
                 <b>שאלה:</b> {item.prompt} <br />
-                <b>תשובה:</b> {item.response}
+                <b>תשובה:</b> {item.response}<br />
+                <b>נשלח בתאריך:</b> {new Date(item.createdAt).toLocaleString()}
+
               </li>
             ))}
           </ul>
