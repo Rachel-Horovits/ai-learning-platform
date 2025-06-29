@@ -50,14 +50,14 @@ export const createPrompt = async (req: Request, res: Response) => {
     const fullPrompt = `נושא: ${categoryDoc?.name}\nתת-נושא: ${subCategoryDoc?.name}\nשאלה: ${prompt}`;
 
     // קריאה ל-OpenAI
-    //const aiResponse = await getAIResponse(fullPrompt);
+    const aiResponse = await getAIResponse(fullPrompt);
 
     const newPrompt = new Prompt({
       user,
       category,
       subCategory,
       prompt,
-      // response: aiResponse,
+      response: aiResponse,
     });
 
     await newPrompt.save();
