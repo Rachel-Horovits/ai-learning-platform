@@ -7,7 +7,6 @@ export const createCategory = async (req: Request, res: Response) => {
     const { name } = req.body;
     let category = await Category.findOne({ name });
     if (category) {
-      // כבר קיימת - מחזירים אותה
       res.status(200).json(category);
       return;
     }
@@ -27,9 +26,7 @@ export const getCategories = async (req: Request, res: Response) => {
 export const deleteCategory = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    // מחיקת כל תתי-הקטגוריות של הקטגוריה
     await SubCategory.deleteMany({ category: id });
-    // מחיקת הקטגוריה עצמה
     await Category.findByIdAndDelete(id);
     res.status(200).json({ message: 'Category and its subcategories deleted' });
   } catch (err) {

@@ -8,25 +8,25 @@ const router = express.Router();
 
 router.use(adminMiddleware);
 
-// משתמשים
+// Users
 router.get('/users', adminController.getUsers);
 router.delete('/users/:id', adminController.deleteUser);
 
-// פרומפטים
+// Prompts
 router.get('/prompts', adminController.getPrompts);
 router.delete('/prompts/:id', adminController.deletePrompt);
 
-// קטגוריות
+// Categories
 router.post('/categories', adminController.createCategory);
 router.get('/categories', adminController.getCategories);
 router.delete('/categories/:id', adminController.deleteCategory);
 
-// תתי קטגוריות
+// Subcategories
 router.post('/subcategories', adminController.createSubCategory);
 router.get('/subcategories', adminController.getSubCategories);
 router.delete('/subcategories/:id', adminController.deleteSubCategory);
 
-// פונקציות ייחודיות למנהל (כמו יצירת מנהל חדש)
+// Admin-specific functions (like creating a new admin)
 router.post('/users/admin', adminController.createAdminUser);
 
 export default router;

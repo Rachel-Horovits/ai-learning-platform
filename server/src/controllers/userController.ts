@@ -50,9 +50,7 @@ export const getUsers = async (req: Request, res: Response) => {
 export const deleteUser = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    // מחיקת כל ה-prompts של המשתמש
     await Prompt.deleteMany({ user: id });
-    // מחיקת המשתמש עצמו
     const deleted = await User.findByIdAndDelete(id);
     if (!deleted) {
       res.status(404).json({ error: 'User not found' });

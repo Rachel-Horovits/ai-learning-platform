@@ -6,8 +6,8 @@ import { OpenAI } from 'openai';
  * Otherwise, calls OpenAI API.
  */
 export async function getAIResponse(fullPrompt: string): Promise<string> {
-  // תמיד מחזיר תשובה (mock)
-  return `תשובה לדוגמה (mock) ל: ${fullPrompt}`;
+  // Always returns a mock response
+  return `Mock answer for: ${fullPrompt}`;
 
   /*
   // Real OpenAI API call
@@ -15,7 +15,7 @@ export async function getAIResponse(fullPrompt: string): Promise<string> {
   const completion = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo',
     messages: [
-      { role: 'system', content: 'ענה תשובה מקצועית, ברורה וקצרה ככל האפשר.' },
+      { role: 'system', content: 'Answer in a professional, clear, and concise manner.' },
       { role: 'user', content: fullPrompt }
     ],
     max_tokens: 300,

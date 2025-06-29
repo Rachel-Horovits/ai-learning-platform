@@ -1,5 +1,3 @@
-// server/middleware/admin.ts
-
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 const JWT_SECRET = process.env.JWT_SECRET || "dev-secret";
@@ -14,7 +12,7 @@ export function adminMiddleware(req: Request, res: Response, next: NextFunction)
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as { role: string };
     if (decoded.role !== "admin") {
-      res.status(403).json({ error: "גישה למנהלים בלבד" });
+      res.status(403).json({ error: "Admins only" });
       return;
     }
     (req as any).user = decoded;

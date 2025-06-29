@@ -6,18 +6,18 @@ export const createSubCategory = async (req: Request, res: Response) => {
   try {
     const { name, category } = req.body;
 
-    // בדיקה שהקטגוריה קיימת
+    // Check that the category exists
     const categoryExists = await Category.findById(category);
     if (!categoryExists) {
-       res.status(400).json({ error: 'Category does not exist' });
-         return;
+      res.status(400).json({ error: 'Category does not exist' });
+      return;
     }
 
-    // בדיקה שאין כבר תת-קטגוריה כזו לאותה קטגוריה
+    // Check that there is no sub-category with the same name for this category
     let subCategory = await SubCategory.findOne({ name, category });
     if (subCategory) {
-       res.status(200).json(subCategory);
-       return;
+      res.status(200).json(subCategory);
+      return;
     }
 
     subCategory = new SubCategory({ name, category });
@@ -27,6 +27,7 @@ export const createSubCategory = async (req: Request, res: Response) => {
     res.status(400).json({ error: 'Create sub-category failed', details: err });
   }
 };
+
 export const getSubCategories = async (req: Request, res: Response) => {
   const { categoryId } = req.query;
   const filter = categoryId ? { category: categoryId } : {};

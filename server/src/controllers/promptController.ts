@@ -9,47 +9,47 @@ export const createPrompt = async (req: Request, res: Response) => {
   try {
     const { user, category, subCategory, prompt } = req.body;
 
-    // בדיקה שהמשתמש קיים
+    // Check that the user exists
     const userExists = await User.findById(user);
     if (!userExists) {
       res.status(400).json({ error: 'User does not exist' });
       return;
     }
 
-    // בדיקה שהקטגוריה קיימת
+    // Check that the category exists
     const categoryExists = await Category.findById(category);
     if (!categoryExists) {
       res.status(400).json({ error: 'Category does not exist' });
       return;
     }
 
-    // בדיקה שתת-הקטגוריה קיימת
+    // Check that the sub-category exists
     const subCategoryExists = await SubCategory.findById(subCategory);
     if (!subCategoryExists) {
       res.status(400).json({ error: 'SubCategory does not exist' });
       return;
     }
 
-    // בדיקה שתת-הקטגוריה שייכת לקטגוריה
+    // Check that the sub-category belongs to the category
     if (subCategoryExists.category.toString() !== category) {
       res.status(400).json({ error: 'SubCategory does not belong to the selected Category' });
       return;
     }
 
-    // בדיקה שה-prompt לא ריק
+    // Check that the prompt is not empty
     if (!prompt || typeof prompt !== 'string' || prompt.trim() === '') {
       res.status(400).json({ error: 'Prompt is required' });
       return;
     }
 
-    // שליפת שמות הקטגוריה ותת-הקטגוריה
+    // Get the names of the category and sub-category
     const categoryDoc = await Category.findById(category);
     const subCategoryDoc = await SubCategory.findById(subCategory);
 
-    // בניית prompt מלא ל-AI
-    const fullPrompt = `נושא: ${categoryDoc?.name}\nתת-נושא: ${subCategoryDoc?.name}\nשאלה: ${prompt}`;
+    // Build the full prompt for the AI
+    const fullPrompt = `Topic: ${categoryDoc?.name}\nSubtopic: ${subCategoryDoc?.name}\nQuestion: ${prompt}`;
 
-    // קריאה ל-OpenAI
+    // Call OpenAI
     const aiResponse = await getAIResponse(fullPrompt);
 
     const newPrompt = new Prompt({
@@ -74,7 +74,7 @@ export const getPrompts = async (req: Request, res: Response) => {
       .populate('user', 'name phone')
       .populate('category', 'name')
       .populate('subCategory', 'name')
-      .sort({ createdAt: -1 }); // ממיין מהחדש לישן
+      .sort({ createdAt: -1 }); 
 
     res.json(prompts);
   } catch (err) {
