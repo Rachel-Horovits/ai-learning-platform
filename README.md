@@ -1,12 +1,12 @@
 # AI Learning Platform
 
-A mini AI-driven learning platform that allows users to select topics, send prompts to an AI, receive generated lessons, and view their learning history.
+A mini AI-driven science learning platform that allows users to select topics, send prompts to an AI, receive generated lessons, and view their learning history.
 
 ---
 
 ## About This Project
 
-This project is a mini MVP for an AI-powered learning platform. Users can register, select what they want to learn (by category and sub-category), send prompts to an AI (OpenAI GPT or mock), receive lesson-like responses, and view their learning history. An admin dashboard allows management of users, categories, and prompts.
+This project is a mini MVP for an AI-powered science learning platform. Users can register, select what they want to learn (by category and sub-category), send prompts to an AI (OpenAI GPT or mock), receive lesson-like responses, and view their learning history. An admin dashboard allows management of users, categories, and prompts.
 
 This project demonstrates skills in software architecture, modular code organization, API integration, and delivery quality.
 
