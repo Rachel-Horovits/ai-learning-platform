@@ -95,17 +95,12 @@ or
    cd ../client
    npm run dev
    ```
-
----
-
-## Project Structure
-
-```
-```markdown
-
 ---
 
 ## Initial Admin User
+
+> **Note:** 
+> The system requires at least one admin user to be defined at all times.
 
 The system includes a default admin user for immediate access:
 
@@ -116,6 +111,11 @@ Use these details to log in as an admin after setup.
 
 ---
 
+## Project Structure
+
+```
+```markdown
+---
 ## Project Structure
 
 ```
