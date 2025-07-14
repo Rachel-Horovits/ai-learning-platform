@@ -1,12 +1,12 @@
 # AI Learning Platform
 
-A mini AI-driven learning platform that allows users to select topics, send prompts to an AI, receive generated lessons, and view their learning history.
+A mini AI-driven science learning platform that allows users to select topics, send prompts to an AI, receive generated lessons, and view their learning history.
 
 ---
 
 ## About This Project
 
-This project is a mini MVP for an AI-powered learning platform. Users can register, select what they want to learn (by category and sub-category), send prompts to an AI (OpenAI GPT or mock), receive lesson-like responses, and view their learning history. An admin dashboard allows management of users, categories, and prompts.
+This project is a mini MVP for an AI-powered science learning platform. Users can register, select what they want to learn (by category and sub-category), send prompts to an AI (OpenAI GPT or mock), receive lesson-like responses, and view their learning history. An admin dashboard allows management of users, categories, and prompts.
 
 This project demonstrates skills in software architecture, modular code organization, API integration, and delivery quality.
 
@@ -16,7 +16,7 @@ This project demonstrates skills in software architecture, modular code organiza
 
 - **Frontend:** React (Vite)
 - **Backend:** Node.js, Express, TypeScript
-- **Database:** MongoDB Atlas (Cloud) via Mongoose ORM
+- **Database:** MongoDB Atlas (Cloud) 
 - **AI Integration:** OpenAI API (with mock support)
 - **Authentication:** JWT-based user authentication
 
@@ -43,7 +43,6 @@ This project demonstrates skills in software architecture, modular code organiza
 
 ## Assumptions
 
-- The platform is intended for demo/educational purposes.
 - AI responses can be mocked for local development.
 - JWT authentication is used for protected routes.
 - Admin users are managed via the admin dashboard.
@@ -54,7 +53,8 @@ This project demonstrates skills in software architecture, modular code organiza
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/Rachel-Horovits/ai-learning-platform.git
+
    cd ai-learning-platform
    ```
 
@@ -71,35 +71,51 @@ This project demonstrates skills in software architecture, modular code organiza
      ```
 
 3. **Configure environment variables:**
-   - In the server folder, create a `.env` file with:
+   - In the server folder, create a `.env` file with :
      ```
-     MONGO_URI=your-mongo-uri
-     OPENAI_API_KEY=your-openai-key
+     MONGO_URI=.env.example-mongo-uri
+    # Get your API key from https://platform.openai.com/account/api-keys
+     OPENAI_API_KEY=your-own-openai-api-key
      PORT=5000
-     JWT_SECRET=your-jwt-secret
+     JWT_SECRET=.env.example-jwt-secret
      USE_MOCK_AI=true
      ```
    - Example `.env` file is provided as `.env.example`.
 
-4. **(Optional) Run MongoDB with Docker:**
-   ```bash
-   docker-compose up -d
-   ```
-
-5. **Run the server:**
+4. **Run the server:**
    ```bash
    cd server
-   npm run dev
-   ```
+   npx ts-node src/app.ts  
+or
+   npx ts-node -r dotenv/config src/app.ts 
+    ```
 
-6. **Run the client:**
+5. **Run the client:**
    ```bash
    cd ../client
    npm run dev
    ```
+---
+
+## Initial Admin User
+
+> **Note:** 
+> The system requires at least one admin user to be defined at all times.
+
+The system includes a default admin user for immediate access:
+
+- **Name:** rachel
+- **Phone:** 0548535482
+
+Use these details to log in as an admin after setup.
 
 ---
 
+## Project Structure
+
+```
+```markdown
+---
 ## Project Structure
 
 ```
@@ -108,16 +124,28 @@ ai-learning-platform/
 ├── server/
 │   ├── src/
 │   │   ├── controllers/
+│   │   ├── middleware/
 │   │   ├── models/
 │   │   ├── routes/
 │   │   ├── services/
+│   │   ├── utils/
 │   │   └── app.ts
-│   └── package.json
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── .env.example
 │
 ├── client/
-│   └── (React app files)
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.js
 │
 └── README.md
+
 ```
 
 ---
@@ -128,6 +156,8 @@ ai-learning-platform/
 - JWT-based authentication
 - Modular, production-grade code structure
 - Easily extendable for more features
+- Only an admin user can create (add) another admin user.
+- The system requires at least one admin user to be defined.
 
 ---
 
@@ -139,14 +169,10 @@ Israel signs up and selects to learn about Science → Space. He enters a prompt
 
 ## Quality & Best Practices
 
-- Organized project structure with clear separation of concerns (routes/controllers/models/services/etc.)
+- Organized project structure with clear separation of concerns (routes/controllers/models/services)
 - Clean, well-documented code following best practices
 - Input validation and API error handling
 - Uses dotenv for configuration management
 - Public GitHub repository with clear commit history
 
 ---
-
-## License
-
-This project is for demonstration and educational purposes.
